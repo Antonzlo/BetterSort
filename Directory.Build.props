@@ -16,7 +16,7 @@
     <OutputPath>bin\$(Configuration)</OutputPath>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'BetterSort.Common'">
     <Compile Include="..\BetterSort.Common\Compatibility\BreakingTypes.cs" Link="External\BreakingTypes.cs" />
   </ItemGroup>
   
@@ -65,6 +65,11 @@
   <!-- For vscode language server -->
   <PropertyGroup Condition="'$(GameVersion)' == ''">
     <GameVersion>1.29.1</GameVersion>
+  </PropertyGroup>
+
+  <!-- Default BeatSaberDir to beatsaber-stripped if not already set -->
+  <PropertyGroup Condition="'$(BeatSaberDir)' == ''">
+    <BeatSaberDir>$(SolutionDir)beatsaber-stripped\versions\$(GameVersion)</BeatSaberDir>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::VersionGreaterThanOrEquals('$(GameVersion)', '1.29.1'))">
