@@ -53,6 +53,8 @@ namespace BetterSort.Accuracy.Sorter {
           mapping.Add(record);
         }
         else {
+          // All mapped previews are sorted first by the comparer, so we can break
+          // once we encounter the first unmapped preview
           break;
         }
       }

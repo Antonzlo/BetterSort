@@ -16,21 +16,11 @@ namespace BetterSort.Accuracy.Installers {
 
       // Accuracy sorter
       Container.Bind<AccuracySorter>().AsSingle();
-      Container.Bind<UIAwareSorter>().AsSingle();
-      Container.Bind<DifficultySelectingSorter>()
-        .FromMethod(ctx => new DifficultySelectingSorter(
-          ctx.Container.Resolve<UIAwareSorter>(),
-          ctx.Container.Resolve<SiraUtil.Logging.SiraLog>(),
-          ctx.Container.Resolve<BetterSort.Common.External.ISongSelection>(),
-          ctx.Container.Resolve<UIAwareSorter>()))
-        .AsSingle();
-      Container.BindInterfacesAndSelfTo<FilterSortAdaptor>()
-        .FromMethod(ctx => new FilterSortAdaptor(
-          ctx.Container.Resolve<DifficultySelectingSorter>(),
-          ctx.Container.Resolve<SiraUtil.Logging.SiraLog>()))
-        .AsSingle();
+      Container.BindInterfacesAndSelfTo<UIAwareSorter>().AsSingle();
+      Container.BindInterfacesAndSelfTo<DifficultySelectingSorter>().AsSingle().WhenInjectedInto<FilterSortAdaptor>();
+      Container.BindInterfacesAndSelfTo<FilterSortAdaptor>().AsSingle();
 
-      // Star Rating sorter
+      // Star Rating sorter - using explicit IDs to avoid conflicts with Accuracy sorter bindings
       Container.Bind<StarRatingSorter>().AsSingle();
       Container.Bind<StarRatingUIAwareSorter>().AsSingle();
       Container.Bind<DifficultySelectingSorter>()
