@@ -29,7 +29,9 @@ namespace BetterSort.Accuracy.External {
     [property: JsonProperty("difficulty")]
     RecordDifficulty Difficulty,
     [property: JsonProperty("accuracy")]
-    double Accuracy
+    double Accuracy,
+    [property: JsonProperty("stars")]
+    double Stars
   ) : IComparable<BestRecord> {
     public int CompareTo(BestRecord other) {
       int result = other.Accuracy.CompareTo(Accuracy);
@@ -55,7 +57,13 @@ namespace BetterSort.Accuracy.External {
   public record LevelBestRecord(
     string Type,
     RecordDifficulty Difficulty,
-    double Accuracy
+    double Accuracy,
+    double Stars
+  );
+
+  public record ScoreRecord(
+    double Accuracy,
+    double Stars
   );
 
   internal class SingleLineConverter : JsonConverter<BestRecord> {
@@ -72,7 +80,7 @@ namespace BetterSort.Accuracy.External {
 
       writer.WriteStartObject();
       writer.WriteRaw($$"""
- "levelId": {{JsonConvert.ToString(value.LevelId)}}, "type": {{JsonConvert.ToString(value.Type)}}, "difficulty": "{{value.Difficulty}}", "accuracy": {{value.Accuracy}}
+ "levelId": {{JsonConvert.ToString(value.LevelId)}}, "type": {{JsonConvert.ToString(value.Type)}}, "difficulty": "{{value.Difficulty}}", "accuracy": {{value.Accuracy}}, "stars": {{value.Stars}}
 """);
       writer.WriteWhitespace(" ");
       writer.WriteEndObject();

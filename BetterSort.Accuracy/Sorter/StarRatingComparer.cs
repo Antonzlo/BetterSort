@@ -3,9 +3,8 @@ using BetterSort.Common.Models;
 using System.Collections.Generic;
 
 namespace BetterSort.Accuracy.Sorter {
-  internal record class LevelRecord(string Mode, RecordDifficulty Difficulty, double Accuracy, double Stars);
 
-  internal class LevelAccuracyComparer(SorterData records) : IComparer<ILevelPreview> {
+  internal class LevelStarRatingComparer(SorterData records) : IComparer<ILevelPreview> {
     private readonly SorterData _records = records;
 
     public Dictionary<ILevelPreview, LevelRecord> LevelMap { get; set; } = [];
@@ -17,7 +16,7 @@ namespace BetterSort.Accuracy.Sorter {
 
       if (LevelMap.TryGetValue(a, out var bestA)) {
         if (LevelMap.TryGetValue(b, out var bestB)) {
-          int descending = bestB.Accuracy.CompareTo(bestA.Accuracy);
+          int descending = bestB.Stars.CompareTo(bestA.Stars);
           return descending;
         }
         return -1;

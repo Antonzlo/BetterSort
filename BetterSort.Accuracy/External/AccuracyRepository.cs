@@ -1,6 +1,6 @@
 global using SorterData = System.Collections.Generic.Dictionary<
   string,
-  System.Collections.Generic.Dictionary<(string Type, BetterSort.Common.Models.RecordDifficulty), double>
+  System.Collections.Generic.Dictionary<(string Type, BetterSort.Common.Models.RecordDifficulty), BetterSort.Accuracy.External.ScoreRecord>
 >;
 using BetterSort.Common.External;
 using BetterSort.Common.Models;
@@ -78,20 +78,21 @@ namespace BetterSort.Accuracy.External {
     }
 
     internal static void AddIfBest(SorterData result, BestRecord record) {
-      var (levelId, type, difficulty, accuracy) = record;
+      var (levelId, type, difficulty, accuracy, stars) = record;
       var map = (type, difficulty);
+      var scoreRecord = new ScoreRecord(accuracy, stars);
       if (result.TryGetValue(levelId, out var level)) {
-        if (level.TryGetValue(map, out double existingAccuracy)) {
-          if (existingAccuracy < accuracy) {
-            level[(type, difficulty)] = accuracy;
+        if (level.TryGetValue(map, out ScoreRecord existingScore)) {
+          if (existingScore.Accuracy < accuracy) {
+            level[(type, difficulty)] = scoreRecord;
           }
         }
         else {
-          level.Add((type, difficulty), accuracy);
+          level.Add((type, difficulty), scoreRecord);
         }
       }
       else {
-        result.Add(record.LevelId, new Dictionary<(string Type, RecordDifficulty), double> { { map, accuracy } });
+        result.Add(record.LevelId, new Dictionary<(string Type, RecordDifficulty), ScoreRecord> { { map, scoreRecord } });
       }
     }
 
@@ -100,8 +101,8 @@ namespace BetterSort.Accuracy.External {
       foreach (var level in accuracies) {
         foreach (var record in level.Value) {
           var (type, difficulty) = record.Key;
-          double accuracy = record.Value;
-          bests.Add(new BestRecord(level.Key, type, difficulty, accuracy), null);
+          var scoreRecord = record.Value;
+          bests.Add(new BestRecord(level.Key, type, difficulty, scoreRecord.Accuracy, scoreRecord.Stars), null);
         }
       }
 

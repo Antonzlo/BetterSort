@@ -38,7 +38,8 @@ namespace BetterSort.Accuracy.External {
           SongHash: hash.ToUpperInvariant(),
           Mode: score.Leaderboard?.Difficulty?.ModeName ?? "Standard",
           Difficulty: difficulty ?? RecordDifficulty.ExpertPlus,
-          Score: score.ModifiedScore
+          Score: score.ModifiedScore,
+          Stars: score.Leaderboard?.Difficulty?.Stars ?? 0
         ));
       }
 
@@ -115,5 +116,8 @@ namespace BeatLeader {
 
     [JsonProperty("modeName")]
     public string? ModeName { get; set; }
+
+    [JsonProperty("stars")]
+    public double? Stars { get; set; }
   }
 }
