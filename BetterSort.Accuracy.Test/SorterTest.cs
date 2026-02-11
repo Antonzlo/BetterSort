@@ -1,3 +1,4 @@
+using BetterSort.Accuracy.External;
 using BetterSort.Accuracy.Sorter;
 using BetterSort.Common.External;
 using BetterSort.Common.Models;
@@ -31,7 +32,7 @@ namespace BetterSort.Accuracy.Test {
         {
           "custom_level_0000000000000000000000000000000000000000",
           new() {
-            { ("Standard", RecordDifficulty.ExpertPlus), 0.90292  },
+            { ("Standard", RecordDifficulty.ExpertPlus), new ScoreRecord(0.90292, 5.5)  },
           }
         },
       };
@@ -55,7 +56,7 @@ namespace BetterSort.Accuracy.Test {
         {
           "custom_level_0000000000000000000000000000000000000000",
           new() {
-            { ("Standard", RecordDifficulty.ExpertPlus) , 0.90292 },
+            { ("Standard", RecordDifficulty.ExpertPlus) , new ScoreRecord(0.90292, 5.5) },
           }
         },
       };
@@ -82,14 +83,14 @@ namespace BetterSort.Accuracy.Test {
         {
           "custom_level_0000000000000000000000000000000000000000",
           new() {
-            { ("Standard", RecordDifficulty.ExpertPlus) , 0.90292 },
+            { ("Standard", RecordDifficulty.ExpertPlus) , new ScoreRecord(0.90292, 5.5) },
           }
         },
         {
           "custom_level_1111111111111111111111111111111111111111",
           new() {
-            { ("Standard", RecordDifficulty.ExpertPlus), 0.80004 },
-            { ("Standard", RecordDifficulty.Expert), 0.92004 },
+            { ("Standard", RecordDifficulty.ExpertPlus), new ScoreRecord(0.80004, 3.2) },
+            { ("Standard", RecordDifficulty.Expert), new ScoreRecord(0.92004, 2.8) },
           }
         },
       };

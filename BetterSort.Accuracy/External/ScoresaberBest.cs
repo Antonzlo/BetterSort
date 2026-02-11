@@ -50,7 +50,8 @@ namespace BetterSort.Accuracy.External {
           SongHash: hash.ToUpperInvariant(),
           Mode: GetGameMode(score.Leaderboard?.Difficulty?.GameMode),
           Difficulty: difficulty ?? RecordDifficulty.ExpertPlus,
-          Score: score.Score?.ModifiedScore ?? 0
+          Score: score.Score?.ModifiedScore ?? 0,
+          Stars: score.Leaderboard?.Stars ?? 0
         ));
       }
 

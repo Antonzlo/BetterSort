@@ -42,7 +42,7 @@ namespace BetterSort.Accuracy.External {
 
     public async Task<SorterData> CollectRecordsFromOnline() {
       var records = await ImportRecords().ConfigureAwait(false);
-      var bests = records.Select(record => new BestRecord($"custom_level_{record.SongHash?.ToUpperInvariant()}", record.Mode, record.Difficulty, record.Accuracy));
+      var bests = records.Select(record => new BestRecord($"custom_level_{record.SongHash?.ToUpperInvariant()}", record.Mode, record.Difficulty, record.Accuracy, record.Stars));
       var sorterData = AccuracyRepository.GetSorterData(bests);
       return sorterData;
     }

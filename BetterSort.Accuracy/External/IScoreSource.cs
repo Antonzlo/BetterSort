@@ -7,7 +7,8 @@ namespace BetterSort.Accuracy.External {
     RecordDifficulty Difficulty,
     string Mode,
     int Score,
-    string SongHash
+    string SongHash,
+    double Stars
   );
 
   public record PagingMetadata(int Page, int ItemsPerPage, int Total);
