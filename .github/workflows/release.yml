@@ -25,6 +25,7 @@ jobs:
       - run: msbuild /p:Configuration=Release-1.34.2 BetterSort.sln
       - run: msbuild /p:Configuration=Release-1.36.2 BetterSort.sln
       - run: msbuild /p:Configuration=Release-1.37.5 BetterSort.sln
+      - run: msbuild /p:Configuration=Release-1.40.8 BetterSort.sln
 
       - uses: ncipollo/release-action@v1
         with:
