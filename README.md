@@ -13,7 +13,12 @@ This plugin records your last played date and sorts songs accordingly.
 
 <img src="docs/accuracy-preview.webp" alt="accuracy sorter screen" height="300"/>
 
-It sorts by difficulty according to your best accuracy.
+This plugin provides two sorters:
+
+- **Accuracy**: Sorts maps by difficulty according to your best accuracy on each difficulty.
+- **Star Rating**: Sorts maps by difficulty according to their star rating (from ScoreSaber/BeatLeader). Each difficulty becomes its own list entry, sorted by star rating in descending order.
+
+Both sorters split maps by difficulty, allowing you to see all difficulties of a map as separate entries.
 
 ## Installation
 
@@ -25,7 +30,7 @@ When manually downloading mods, please be careful of the mod's dependencies. Cur
 
 ## Usage
 
-Simply click the left-bottom sort button in the song select scene, and choose either 'Last played' or 'Accuracy'.
+Simply click the left-bottom sort button in the song select scene, and choose either 'Last played', 'Accuracy', or 'Star Rating'.
 
 ## Q&A
 
@@ -33,7 +38,7 @@ Simply click the left-bottom sort button in the song select scene, and choose ei
 
   A: For LastPlayed, immediately after installation, there's no play history recorded. So, play some songs first.<br />
 
-  For Accuracy, the plugin gathers your scores from ScoreSaber and BeatLeader upon first launch. This process may take a while depending on your score history.
+  For Accuracy and Star Rating, the plugin gathers your scores from ScoreSaber and BeatLeader upon first launch. This process may take a while depending on your score history.
 
 - Q: Reverse sort doesn't work.<br />
   A: I intentionally didn't support reverse sorting. Currently BetterSongList doesn't remember the sort direction of each sorter, which caused confusion for me while playing.
