@@ -1,6 +1,6 @@
 global using SorterData = System.Collections.Generic.Dictionary<
   string,
-  System.Collections.Generic.Dictionary<(string Type, BetterSort.Common.Models.RecordDifficulty), double>
+  System.Collections.Generic.Dictionary<(string Type, BetterSort.Common.Models.RecordDifficulty), BetterSort.Accuracy.External.ScoreRecord>
 >;
 using BetterSort.Accuracy.External;
 using BetterSort.Common.Models;
@@ -17,7 +17,7 @@ namespace BetterSort.Accuracy.Test {
       {
         "custom_level_000",
         new() {
-          { new ("Standard", RecordDifficulty.ExpertPlus), 0.90292 },
+          { new ("Standard", RecordDifficulty.ExpertPlus), new ScoreRecord(0.90292, 5.5) },
         }
       }
     };
@@ -26,8 +26,8 @@ namespace BetterSort.Accuracy.Test {
       {
         "custom_level_111",
         new() {
-          { new ("Standard", RecordDifficulty.ExpertPlus), 0.90292 },
-          { new ("Standard", RecordDifficulty.Expert), 0.92192 },
+          { new ("Standard", RecordDifficulty.ExpertPlus), new ScoreRecord(0.90292, 6.2) },
+          { new ("Standard", RecordDifficulty.Expert), new ScoreRecord(0.92192, 5.1) },
         }
       },
     };
@@ -36,14 +36,14 @@ namespace BetterSort.Accuracy.Test {
       {
         "custom_level_222",
         new() {
-          { new ("Lawless", RecordDifficulty.Hard), 0.91000 },
+          { new ("Lawless", RecordDifficulty.Hard), new ScoreRecord(0.91000, 4.8) },
         }
       },
       {
         "custom_level_111",
         new() {
-          { new ("Standard", RecordDifficulty.ExpertPlus), 0.90292 },
-          { new ("Standard", RecordDifficulty.Expert), 0.92192 },
+          { new ("Standard", RecordDifficulty.ExpertPlus), new ScoreRecord(0.90292, 6.2) },
+          { new ("Standard", RecordDifficulty.Expert), new ScoreRecord(0.92192, 5.1) },
         }
       },
     };
@@ -77,7 +77,7 @@ namespace BetterSort.Accuracy.Test {
       Assert.AreEqual($$"""
 {
   "bestRecords": [
-    { "levelId": "custom_level_000", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292 }
+    { "levelId": "custom_level_000", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292, "stars": 5.5 }
   ],
   "lastRecordAt": "2022-03-02T00:00:00Z",
   "version": "{{_version}}"
@@ -95,8 +95,8 @@ namespace BetterSort.Accuracy.Test {
       Assert.AreEqual($$"""
 {
   "bestRecords": [
-    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "Expert", "accuracy": 0.92192 },
-    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292 }
+    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "Expert", "accuracy": 0.92192, "stars": 5.1 },
+    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292, "stars": 6.2 }
   ],
   "lastRecordAt": "2022-03-01T00:00:00Z",
   "version": "{{_version}}"
@@ -114,9 +114,9 @@ namespace BetterSort.Accuracy.Test {
       Assert.AreEqual($$"""
 {
   "bestRecords": [
-    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "Expert", "accuracy": 0.92192 },
-    { "levelId": "custom_level_222", "type": "Lawless", "difficulty": "Hard", "accuracy": 0.91 },
-    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292 }
+    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "Expert", "accuracy": 0.92192, "stars": 5.1 },
+    { "levelId": "custom_level_222", "type": "Lawless", "difficulty": "Hard", "accuracy": 0.91, "stars": 4.8 },
+    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292, "stars": 6.2 }
   ],
   "lastRecordAt": "2022-03-01T00:00:00Z",
   "version": "{{_version}}"
@@ -136,9 +136,9 @@ namespace BetterSort.Accuracy.Test {
       Assert.AreEqual($$"""
 {
   "bestRecords": [
-    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "Expert", "accuracy": 0.92192 },
-    { "levelId": "custom_level_222", "type": "Lawless", "difficulty": "Hard", "accuracy": 0.91 },
-    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292 }
+    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "Expert", "accuracy": 0.92192, "stars": 5.1 },
+    { "levelId": "custom_level_222", "type": "Lawless", "difficulty": "Hard", "accuracy": 0.91, "stars": 4.8 },
+    { "levelId": "custom_level_111", "type": "Standard", "difficulty": "ExpertPlus", "accuracy": 0.90292, "stars": 6.2 }
   ],
   "lastRecordAt": "2022-03-01T00:00:00Z",
   "version": "{{_version}}"
