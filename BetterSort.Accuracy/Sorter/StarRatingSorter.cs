@@ -72,6 +72,4 @@ namespace BetterSort.Accuracy.Sorter {
       return result.Result;
     }
   }
-
-  record SortResult(SortFilterResult? Result, string Message);
 }
